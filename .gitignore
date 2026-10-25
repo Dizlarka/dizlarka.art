@@ -1,0 +1,7 @@
+.DS_Store
+# Original source material (photos/videos/sketch) — kept locally, not needed for the site.
+prepare/
+# Source videos are too large for GitHub (100MB/file limit); they live on YouTube.
+*.mp4
+*.MOV
+*.mov

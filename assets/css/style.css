@@ -1,0 +1,147 @@
+/* Dizlarka — landing page
+   Layout: a museum-white single column; full-width dark header band; works lead, type stays quiet. */
+
+:root{
+  --bg:#ffffff;
+  --panel:#f1efe9;        /* warm light grey for the Artist Statement band */
+  --ink:#1a1916;
+  --muted:#6f6b63;
+  --line:#e4e1d9;
+  --band:#232220;         /* dark header / About band */
+  --band-ink:#f4f2ec;
+  --accent:#8a3324;       /* muted oxide red, pulled from the placenta work */
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#121110; --panel:#1b1a18; --ink:#ece9e2; --muted:#9a948a; --line:#2b2926;
+    --band:#000000; --band-ink:#f4f2ec; --accent:#c9674f; color-scheme:dark;
+  }
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"Hanken Grotesk",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%}
+.wrap{
+  max-width:1180px;
+  margin-inline:auto;
+  padding-left:max(20px,env(safe-area-inset-left,0px));
+  padding-right:max(20px,env(safe-area-inset-right,0px));
+}
+h1,h2,h3{font-family:"Spectral",Georgia,serif;font-weight:400;text-wrap:balance;margin:0}
+p{margin:0 0 1.1em}
+a{color:inherit}
+.eyebrow{font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);font-weight:600}
+
+/* Header band */
+.band{background:var(--band);color:var(--band-ink);text-align:center;padding-block:34px 30px}
+.band .name{font-family:"Spectral",Georgia,serif;font-weight:300;letter-spacing:.42em;
+  font-size:clamp(1.9rem,7vw,3.4rem);margin:0 0 0 .42em;line-height:1}
+.band .tag{font-size:.74rem;letter-spacing:.3em;text-transform:uppercase;color:#b8b2a6;margin-top:14px}
+
+section{padding-block:clamp(48px,8vw,96px)}
+.bg-panel{background:var(--panel)}
+
+/* Bio + featured: image left, text right */
+.split{display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr);
+  gap:clamp(28px,5vw,64px);align-items:start}
+.split.rev{grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr)}
+.split img{width:100%;height:auto;display:block}
+figure{margin:0}
+figcaption{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:12px}
+h2.head{font-size:clamp(2rem,5vw,3.1rem);line-height:1.08;margin-bottom:.5em}
+.lead{max-width:64ch}
+
+/* social / portfolio links under bio */
+.social{display:flex;gap:26px;flex-wrap:wrap;margin-top:6px}
+.social a{text-decoration:none;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;
+  font-weight:600;color:var(--ink);border-bottom:1px solid var(--accent);padding-bottom:3px;transition:color .2s}
+.social a:hover{color:var(--accent)}
+
+/* Featured work heading */
+.feat-head{text-align:center;margin-bottom:clamp(28px,5vw,48px)}
+.feat-head .eyebrow{display:block;margin-bottom:12px}
+.feat-head h2{font-size:clamp(2rem,5vw,3.1rem);line-height:1.08}
+
+/* Zoomable image */
+.zoom{overflow:hidden;position:relative;cursor:zoom-in;background:var(--panel);border:0;padding:0;margin:0;width:100%;display:block}
+.zoom img{display:block;width:100%;transition:transform .45s ease}
+.zoom:hover img{transform:scale(1.06)}
+
+/* Details of Artwork grids */
+.grid-head{display:flex;justify-content:space-between;align-items:baseline;
+  border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:28px;gap:16px;flex-wrap:wrap}
+.grid-head h2{font-size:clamp(1.5rem,4vw,2.2rem)}
+.dgrids{display:grid;gap:clamp(10px,1.6vw,20px)}
+.dgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.6vw,20px)}
+.dgrid .zoom img{height:100%;object-fit:cover}
+.dgrid.port .zoom{aspect-ratio:3/4}
+.dgrid.land .zoom{aspect-ratio:4/3}
+
+/* Video facade (poster -> inline YouTube player on click) */
+.vid{display:block;position:relative;overflow:hidden;background:#000;border:0;padding:0;margin:0;
+  width:100%;cursor:pointer;text-align:left}
+.vid img{width:100%;height:100%;object-fit:cover;display:block;opacity:.9;transition:opacity .25s}
+.vid:hover img{opacity:1}
+.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.play{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
+.play span{width:62px;height:62px;border-radius:50%;background:rgba(255,255,255,.92);
+  display:grid;place-items:center;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+.play span::after{content:"";border-left:19px solid #111;border-top:12px solid transparent;
+  border-bottom:12px solid transparent;margin-left:5px}
+.vcap{text-align:center;margin-top:12px;font-size:.74rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted)}
+
+/* In Motion — single vertical video */
+.motion{max-width:400px;margin-inline:auto}
+.motion .vid{aspect-ratio:9/16;border-radius:2px}
+
+/* About the Project — dark band */
+.about{background:var(--band);color:var(--band-ink);text-align:center}
+.about .eyebrow{color:#b8b2a6}
+.about h2{color:var(--band-ink);font-size:clamp(2rem,5vw,3.1rem);margin:12px 0 .6em}
+.about .copy{max-width:66ch;margin-inline:auto;text-align:left}
+.about .copy p{color:#e8e4db}
+.btn{display:inline-block;border:1px solid var(--band-ink);color:var(--band-ink);
+  padding:14px 32px;text-decoration:none;letter-spacing:.14em;text-transform:uppercase;
+  font-size:.8rem;font-weight:600;margin-top:10px;transition:background .2s,color .2s}
+.btn:hover{background:var(--band-ink);color:var(--band)}
+
+/* Fragile Beginnings — vertical videos */
+.fb-head{text-align:center;margin-bottom:clamp(26px,4vw,44px)}
+.fb-head h2{font-size:clamp(2rem,5vw,3.1rem);line-height:1.08;margin-top:12px}
+.fb{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,2vw,24px)}
+.fb .vid{aspect-ratio:9/16}
+.fb .label{text-align:center;margin-top:14px}
+.fb .label .n{font-family:"Spectral",serif;font-style:italic;color:var(--muted);font-size:.95rem}
+.fb .label .t{display:block;letter-spacing:.14em;text-transform:uppercase;font-size:.78rem;font-weight:600;margin-top:3px}
+
+footer{border-top:1px solid var(--line);padding-block:38px;text-align:center;color:var(--muted);font-size:.82rem}
+footer a{color:var(--accent);text-decoration:none}
+
+/* Lightbox */
+.lb{position:fixed;inset:0;z-index:100;display:none;place-items:center;background:rgba(12,11,10,.93);padding:24px}
+.lb.open{display:grid}
+.lb img{max-width:var(--lb-w,90vw);max-height:var(--lb-h,90vh);width:auto;height:auto;object-fit:contain;
+  box-shadow:0 30px 90px rgba(0,0,0,.6)}
+.lb-close{position:fixed;top:calc(env(safe-area-inset-top,0px) + 14px);right:18px;
+  width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.4);
+  background:rgba(0,0,0,.4);color:#fff;font-size:1.6rem;line-height:1;cursor:pointer}
+.lb-close:hover{background:rgba(255,255,255,.15)}
+
+@media (prefers-reduced-motion:reduce){
+  .zoom img{transition:none}
+  .zoom:hover img{transform:none}
+}
+@media (max-width:760px){
+  .split,.split.rev{grid-template-columns:1fr}
+  .split.rev figure{order:-1}
+}
