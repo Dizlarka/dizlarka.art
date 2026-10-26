@@ -30,7 +30,7 @@ jobs:
       - name: Assemble the site
         run: |
           mkdir -p _site
-          cp -R index.html assets CNAME .nojekyll _site/
+          cp -R index.html assets CNAME .nojekyll robots.txt sitemap.xml _site/
 
       # A build can succeed and still publish something broken: a renamed image,
       # a missing stylesheet, and the page just loads wrong with nothing thrown.
@@ -39,6 +39,8 @@ jobs:
           set -e
           test -f _site/index.html
           test -f _site/CNAME
+          test -f _site/robots.txt
+          test -f _site/sitemap.xml
           test -d _site/assets/img
           missing=0
           for ref in $(grep -oE 'assets/[A-Za-z0-9/_.-]+' _site/index.html | sort -u); do

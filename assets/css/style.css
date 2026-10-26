@@ -44,8 +44,8 @@ a{color:inherit}
 /* Header band */
 .band{background:var(--band);color:var(--band-ink);text-align:center;padding-block:34px 30px}
 .band .name{font-family:"Spectral",Georgia,serif;font-weight:300;letter-spacing:.42em;
-  font-size:clamp(1.9rem,7vw,3.4rem);margin:0 0 0 .42em;line-height:1}
-.band .tag{font-size:.74rem;letter-spacing:.3em;text-transform:uppercase;color:#b8b2a6;margin-top:14px}
+  text-transform:uppercase;font-size:clamp(1.9rem,7vw,3.4rem);margin:0 0 0 .42em;line-height:1}
+.band .tag{font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:#b8b2a6;margin:14px 0 0}
 
 section{padding-block:clamp(48px,8vw,96px)}
 .bg-panel{background:var(--panel)}
@@ -72,6 +72,7 @@ h2.head{font-size:clamp(2rem,5vw,3.1rem);line-height:1.08;margin-bottom:.5em}
 .feat-head h2{font-size:clamp(2rem,5vw,3.1rem);line-height:1.08}
 
 /* Zoomable image */
+img[data-zoom]{cursor:zoom-in}
 .zoom{overflow:hidden;position:relative;cursor:zoom-in;background:var(--panel);border:0;padding:0;margin:0;width:100%;display:block}
 .zoom img{display:block;width:100%;transition:transform .45s ease}
 .zoom:hover img{transform:scale(1.06)}
@@ -127,6 +128,21 @@ h2.head{font-size:clamp(2rem,5vw,3.1rem);line-height:1.08;margin-bottom:.5em}
 footer{border-top:1px solid var(--line);padding-block:38px;text-align:center;color:var(--muted);font-size:.82rem}
 footer a{color:var(--accent);text-decoration:none}
 
+/* Exhibitions & Contact */
+.endcols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,64px);align-items:start}
+.endcols .lead{max-width:none}
+h2.head.sm{font-size:clamp(1.5rem,4vw,2.2rem);margin-bottom:.6em}
+.plain{list-style:none;padding:0;margin:0}
+.plain li{padding:9px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+.plain li:last-child{border-bottom:0}
+
+/* "Watch on YouTube" fallback links (work without JavaScript, crawlable) */
+.watch{display:inline-block;margin-top:10px;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line)}
+.watch:hover{color:var(--accent)}
+.vcap a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line)}
+.vcap a:hover{color:var(--accent)}
+
 /* Lightbox */
 .lb{position:fixed;inset:0;z-index:100;display:none;place-items:center;background:rgba(12,11,10,.93);padding:24px}
 .lb.open{display:grid}
@@ -147,8 +163,9 @@ footer a{color:var(--accent);text-decoration:none}
 @media (max-width:760px){
   .split,.split.rev{grid-template-columns:1fr}
   .split.rev figure{order:-1}
+  .endcols{grid-template-columns:1fr;gap:40px}
 }
 @media (max-width:620px){
-  .dgrid{grid-template-columns:repeat(2,1fr)}
+  .dgrid{grid-template-columns:1fr}
   .fb{grid-template-columns:1fr;max-width:380px;margin-inline:auto}
 }

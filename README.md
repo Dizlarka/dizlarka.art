@@ -11,6 +11,8 @@ domain **dizlarka.art**.
 - `assets/js/main.js` — image lightbox + click-to-load YouTube players
 - `assets/img/` — web-optimised images and video posters
 - `assets/favicon.svg` — favicon
+- `robots.txt` — allows crawling, points to the sitemap
+- `sitemap.xml` — single canonical URL for search engines
 - `CNAME` — custom domain for GitHub Pages
 - `.nojekyll` — serve files as-is (skip Jekyll)
 - `.github/workflows/deploy.yml` — CI: verify + deploy to GitHub Pages on push to `main`
