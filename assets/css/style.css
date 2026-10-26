@@ -128,14 +128,6 @@ img[data-zoom]{cursor:zoom-in}
 footer{border-top:1px solid var(--line);padding-block:38px;text-align:center;color:var(--muted);font-size:.82rem}
 footer a{color:var(--accent);text-decoration:none}
 
-/* Exhibitions & Contact */
-.endcols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,64px);align-items:start}
-.endcols .lead{max-width:none}
-h2.head.sm{font-size:clamp(1.5rem,4vw,2.2rem);margin-bottom:.6em}
-.plain{list-style:none;padding:0;margin:0}
-.plain li{padding:9px 0;border-bottom:1px solid var(--line);font-size:.95rem}
-.plain li:last-child{border-bottom:0}
-
 /* "Watch on YouTube" fallback links (work without JavaScript, crawlable) */
 .watch{display:inline-block;margin-top:10px;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;
   color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line)}
@@ -163,7 +155,6 @@ h2.head.sm{font-size:clamp(1.5rem,4vw,2.2rem);margin-bottom:.6em}
 @media (max-width:760px){
   .split,.split.rev{grid-template-columns:1fr}
   .split.rev figure{order:-1}
-  .endcols{grid-template-columns:1fr;gap:40px}
 }
 @media (max-width:620px){
   .dgrid{grid-template-columns:1fr}
