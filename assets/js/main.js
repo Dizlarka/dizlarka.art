@@ -5,6 +5,27 @@
   var lb = document.getElementById('lb');
   var lbImg = document.getElementById('lbImg');
   var lbVideo = null;
+  var scrollLock = 0;
+
+  // Freeze the page behind the overlay. Without this, Safari lets the
+  // background scroll while the lightbox is open and jumps it to the top
+  // when you tap inside — so we pin the body and restore the position on close.
+  function lockScroll() {
+    scrollLock = window.pageYOffset || document.documentElement.scrollTop || 0;
+    document.body.style.position = 'fixed';
+    document.body.style.top = (-scrollLock) + 'px';
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
+  }
+  function unlockScroll() {
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.width = '';
+    window.scrollTo(0, scrollLock);
+  }
 
   function clearVideo() {
     if (lbVideo) { lbVideo.remove(); lbVideo = null; } // removing the iframe stops playback
@@ -16,6 +37,7 @@
     lbImg.hidden = false;
     lb.style.setProperty('--lb-w', size + 'vw');
     lb.style.setProperty('--lb-h', size + 'vh');
+    if (!lb.classList.contains('open')) lockScroll();
     lb.classList.add('open');
   }
 
@@ -33,14 +55,17 @@
     iframe.setAttribute('allowfullscreen', '');
     lbVideo.appendChild(iframe);
     lb.insertBefore(lbVideo, lbImg);
+    if (!lb.classList.contains('open')) lockScroll();
     lb.classList.add('open');
   }
 
   function close() {
+    if (!lb.classList.contains('open')) return;
     lb.classList.remove('open');
     lbImg.hidden = false;
     lbImg.removeAttribute('src');
     clearVideo();
+    unlockScroll();
   }
 
   if (!lb || !lbImg) return;
